@@ -14,16 +14,23 @@ var renderButtons = function (topics) {
 }
 renderButtons(topics);
 
-// Build the queryURL based on the button clicked
-var queryURL = l;
+// ON click event for any of the buttons that have been rendered: 
+$(".btn").on("click", function () {
+    //Build the queryURL based on the button clicked
+    var searchFor = $(this).attr("data-name");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchFor + "&limit=10" + "&api_key=F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
 
-//Ajax to call the Giphy API with the queryURL
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function (response) {
-    // Place ten gifs on the page...not moving...will define on click events for them
+    //Ajax to call the Giphy API with the queryURL
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
+        // Place ten gifs on the page...not moving...will define on click events for them
+    })
+
 })
+
 
 
 // On click event to change the state of the gif to active, then set the state so if it's clicked again/tested again it will change its state to the other state.
