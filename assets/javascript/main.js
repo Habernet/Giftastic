@@ -20,12 +20,22 @@ $(".btn").on("click", function () {
     var searchFor = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchFor + "&limit=10" + "&api_key=F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
 
+
+    // response.data[0].images.fixed_height_still.url
+    // response.data[0].images.fixed_height.url
+
     //Ajax to call the Giphy API with the queryURL
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         console.log(response);
+        var gifDiv = $("<div>");
+        var gif = $("<img>").attr("src", response.data[0].images.fixed_height.url);
+        var rating = $("<p>").text("Rating: " + response.data[0].rating);
+        gifDiv.append(gif, rating);
+        console.log(gifDiv);
+        $("#gifs").prepend(gifDiv);
         // Place ten gifs on the page...not moving...will define on click events for them
     })
 
