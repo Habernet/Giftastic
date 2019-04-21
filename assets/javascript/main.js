@@ -25,7 +25,6 @@ $("#buttons").on("click",".btn", function () {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        
         for (let i = 0; i < 10; i++) {
             var randomIndex = Math.floor(Math.random() * 100);
             var gifDiv = $("<div>");
